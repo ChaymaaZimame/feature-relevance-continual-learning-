@@ -46,6 +46,10 @@ class ImageWoofDataset(Dataset):
                  class_indices = None
         ):
         self.img_path = Path(img_path)
+        
+        if split not in {"train", "val"}: # z.B. /home/zimame/data/imagewoof2/train
+            raise ValueError(f"split must be 'train' or 'val', got {split}")
+
         self.split = split
         # beim normalen Training wird keine Transformation übergeben
         # dann werden die standard Transformationen aus data_transforms verwendet
@@ -54,11 +58,13 @@ class ImageWoofDataset(Dataset):
             self.transform = data_transforms[split]
         else:
             self.transform = transform
+            
         
-        if split == 'train':
-            split_dir = self.img_path / 'train' # d.h./home/zimame/data/imagewoof2/train
-        else:
-            split_dir = self.img_path / 'val'    
+        split_dir = self.img_path / split  
+        
+        if not split_dir.exists():
+            raise FileNotFoundError(f"Split directory not found: {split_dir}")
+
        
         # alle Klassenordner in Liste speichern
         #self.all_class_names = []
@@ -71,25 +77,29 @@ class ImageWoofDataset(Dataset):
         self.all_class_names = sorted([d.name for d in split_dir.iterdir() if d.is_dir()])
         
         if class_indices is None:
-            self.class_names = self.all_class_names
-        else:
-            #for i in class_indices:
-             #   self.class_names = self.all_class_names[i]
-            self.class_names = [self.all_class_names[i] for i in class_indices]
+            raise ValueError("class_indices must be provided explicitly (e.g. [0-6], [7-9] or [0-9])")
         
+        for i in class_indices:
+            if i < 0 or i >= len(self.all_class_names):
+                raise ValueError(f"class index {i} out of range [0, {len(self.all_class_names)-1}]")
+
+        self.class_names = [self.all_class_names[i] for i in class_indices]
+        """
         # class_name zu Label-ID mappen
         # später als label für jedes Bild verwenden
         self.class_to_label = {}
         for idx, class_name in enumerate(self.class_names):
             self.class_to_label[class_name] = idx # z.B. {"n02086240": 0} - 0-9
+        """
+        self.global_class_to_label = {name: i for i, name in enumerate(self.all_class_names)}
         
         #alle Bildpfade und Labels in Liste speichern    
         # je nach split_dir (train oder val)         
-        self.subsets = self.build_train_val_subsets(split_dir)
+        self.samples = self.build_train_val_samples(split_dir)
         
         #print(f"Dataset initialized with {len(self.subsets)} images and {len(self.class_names)} classes for split '{self.split}'")          
          
-    def build_train_val_subsets(self, split_dir):
+    def build_train_val_samples(self, split_dir):
         # liste von Tupeln (img_path, label) initialisiert
         #images = []
         # numpy array statt liste für schnelleren zugriff
@@ -101,7 +111,9 @@ class ImageWoofDataset(Dataset):
             #interdir() listet in dem Fall alle Bilder in jedem Klassenordner
             for img_path in sorted(class_dir.iterdir()):
                     # das label wird vom dict class_to_label geholt
-                    label = self.class_to_label[class_name] #idx
+                    #label = self.class_to_label[class_name] #idx
+                    label = self.global_class_to_label[class_name]
+
                     
                     images_array.append((img_path, label))
                     #images.append((img_path, label))
@@ -109,12 +121,12 @@ class ImageWoofDataset(Dataset):
           
         
     def __len__(self):
-        return len(self.subsets)
+        return len(self.samples)
         
     def __getitem__(self, idx):
         #self.subsets ist eine Liste von Tupeln (img_path, label)
         # labels werden automatisch von dataloader in tensor umgewandelt
-        img_path, label = self.subsets[idx]
+        img_path, label = self.samples[idx]
         with Image.open(img_path) as im:
             image = im.convert("RGB")
             
@@ -142,11 +154,20 @@ if __name__ == "__main__":
     val_dataloader_7 = DataLoader(val_dataset_7, batch_size=32, shuffle=False)
     train_dataloader_3 = DataLoader(train_dataset_3, batch_size=32, shuffle=True)
     val_dataloader_3 = DataLoader(val_dataset_3, batch_size=32, shuffle=False)
-    
+    '''
     print("Beispiel Batch aus dem Trainings-Dataloader (7 Klassen):")
     images, labels = next(iter(train_dataloader_3))
     print(f"Images Shape: {images.shape}") #torch.Size([32, 3, 224, 224])
     print(f"Labels: {labels}")                                  
     print("Images tensor example: ", images[0])
+    
+    '''
 
+    print("Unique labels in train_dataset_7:", set(train_dataset_7.samples[:,1].tolist()))
+    print(train_dataset_7.global_class_to_label)
+    print("Aktuell geladene Klassen:", train_dataset_7.class_names)
+    
+    print("Unique labels in train_dataset_3:", set(train_dataset_3.samples[:,1].tolist()))
+    print(train_dataset_3.global_class_to_label)
+    print("Aktuell geladene Klassen:", train_dataset_3.class_names)
     
