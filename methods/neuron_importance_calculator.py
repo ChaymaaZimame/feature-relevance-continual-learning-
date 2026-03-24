@@ -51,6 +51,22 @@ class NeuronImportanceCalculator:
         
         self.activations.clear()
         
+    def scale_importance_for_grad(self, importance, layertype):
+        
+        if layertype in ("bn", "linear_b"):
+            scale = importance
+            
+        elif layertype == "linear_w":
+            scale = importance.view(-1,1)
+            
+        elif layertype == "conv":
+            scale = importance.view(-1,1,1,1)
+        
+        else:
+            raise ValueError(f"Unknown layertype: {layertype}")
+        
+        return scale
+    
     def remove_hooks(self):
         for handle in self.hook_handles:
             handle.remove()

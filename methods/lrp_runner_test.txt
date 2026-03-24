@@ -1,0 +1,690 @@
+
+########## Relevances per LRP-Layer ##########
+
+########## Param-Scales ##########
+model.conv1.weight torch.Size([64, 1, 1, 1])
+model.bn1.weight torch.Size([64])
+model.bn1.bias torch.Size([64])
+model.layer1.0.conv1.weight torch.Size([64, 1, 1, 1])
+model.layer1.0.bn1.weight torch.Size([64])
+model.layer1.0.bn1.bias torch.Size([64])
+model.layer1.0.conv2.weight torch.Size([64, 1, 1, 1])
+model.layer1.0.bn2.weight torch.Size([64])
+model.layer1.0.bn2.bias torch.Size([64])
+model.layer1.1.conv1.weight torch.Size([64, 1, 1, 1])
+model.layer1.1.bn1.weight torch.Size([64])
+model.layer1.1.bn1.bias torch.Size([64])
+model.layer1.1.conv2.weight torch.Size([64, 1, 1, 1])
+model.layer1.1.bn2.weight torch.Size([64])
+model.layer1.1.bn2.bias torch.Size([64])
+model.layer2.0.conv1.weight torch.Size([128, 1, 1, 1])
+model.layer2.0.bn1.weight torch.Size([128])
+model.layer2.0.bn1.bias torch.Size([128])
+model.layer2.0.conv2.weight torch.Size([128, 1, 1, 1])
+model.layer2.0.bn2.weight torch.Size([128])
+model.layer2.0.bn2.bias torch.Size([128])
+model.layer2.0.downsample.0.weight torch.Size([128, 1, 1, 1])
+model.layer2.0.downsample.1.weight torch.Size([128])
+model.layer2.0.downsample.1.bias torch.Size([128])
+model.layer2.1.conv1.weight torch.Size([128, 1, 1, 1])
+model.layer2.1.bn1.weight torch.Size([128])
+model.layer2.1.bn1.bias torch.Size([128])
+model.layer2.1.conv2.weight torch.Size([128, 1, 1, 1])
+model.layer2.1.bn2.weight torch.Size([128])
+model.layer2.1.bn2.bias torch.Size([128])
+model.layer3.0.conv1.weight torch.Size([256, 1, 1, 1])
+model.layer3.0.bn1.weight torch.Size([256])
+model.layer3.0.bn1.bias torch.Size([256])
+model.layer3.0.conv2.weight torch.Size([256, 1, 1, 1])
+model.layer3.0.bn2.weight torch.Size([256])
+model.layer3.0.bn2.bias torch.Size([256])
+model.layer3.0.downsample.0.weight torch.Size([256, 1, 1, 1])
+model.layer3.0.downsample.1.weight torch.Size([256])
+model.layer3.0.downsample.1.bias torch.Size([256])
+model.layer3.1.conv1.weight torch.Size([256, 1, 1, 1])
+model.layer3.1.bn1.weight torch.Size([256])
+model.layer3.1.bn1.bias torch.Size([256])
+model.layer3.1.conv2.weight torch.Size([256, 1, 1, 1])
+model.layer3.1.bn2.weight torch.Size([256])
+model.layer3.1.bn2.bias torch.Size([256])
+model.layer4.0.conv1.weight torch.Size([512, 1, 1, 1])
+model.layer4.0.bn1.weight torch.Size([512])
+model.layer4.0.bn1.bias torch.Size([512])
+model.layer4.0.conv2.weight torch.Size([512, 1, 1, 1])
+model.layer4.0.bn2.weight torch.Size([512])
+model.layer4.0.bn2.bias torch.Size([512])
+model.layer4.0.downsample.0.weight torch.Size([512, 1, 1, 1])
+model.layer4.0.downsample.1.weight torch.Size([512])
+model.layer4.0.downsample.1.bias torch.Size([512])
+model.layer4.1.conv1.weight torch.Size([512, 1, 1, 1])
+model.layer4.1.bn1.weight torch.Size([512])
+model.layer4.1.bn1.bias torch.Size([512])
+model.layer4.1.conv2.weight torch.Size([512, 1, 1, 1])
+model.layer4.1.bn2.weight torch.Size([512])
+model.layer4.1.bn2.bias torch.Size([512])
+model.fc.weight torch.Size([7, 1])
+model.fc.bias torch.Size([7])
+
+########## Detailed Param Scales ##########
+Anzahl Parameter-Layer: 62
+================================================================================
+Param-Layer: model.conv1.weight
+LRP-Layer: RelevancePropagationConv2d.out.14
+Layertype: conv
+R shape: torch.Size([8, 64, 112, 112])
+R Min: 0.0
+R Max: 9.013721137307584e-05
+R Mean: 1.1372990229574498e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.bn1.weight
+LRP-Layer: RelevancePropagationBatchNorm2d.out.13
+Layertype: bn
+R shape: torch.Size([8, 64, 112, 112])
+R Min: 0.0
+R Max: 9.013721137307584e-05
+R Mean: 1.1372990229574498e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.bn1.bias
+LRP-Layer: RelevancePropagationBatchNorm2d.out.13
+Layertype: bn
+R shape: torch.Size([8, 64, 112, 112])
+R Min: 0.0
+R Max: 9.013721137307584e-05
+R Mean: 1.1372990229574498e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.0.conv1.weight
+LRP-Layer: layer1.0.conv1_out
+Layertype: conv
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 0.0
+R Max: 5.341695577953942e-05
+R Mean: 4.678228378907079e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.0.bn1.weight
+LRP-Layer: layer1.0.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 0.0
+R Max: 5.341695577953942e-05
+R Mean: 4.678228378907079e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.0.bn1.bias
+LRP-Layer: layer1.0.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 0.0
+R Max: 5.341695577953942e-05
+R Mean: 4.678228378907079e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.0.conv2.weight
+LRP-Layer: layer1.0.conv2_out
+Layertype: conv
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 0.0
+R Max: 0.00013414860586635768
+R Mean: 4.678229288401781e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.0.bn2.weight
+LRP-Layer: layer1.0.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 0.0
+R Max: 0.00013414860586635768
+R Mean: 4.678229288401781e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.0.bn2.bias
+LRP-Layer: layer1.0.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 0.0
+R Max: 0.00013414860586635768
+R Mean: 4.678229288401781e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.1.conv1.weight
+LRP-Layer: layer1.1.conv1_out
+Layertype: conv
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 2.3286135686362286e-08
+R Max: 5.790355135104619e-05
+R Mean: 4.678235654864693e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.1.bn1.weight
+LRP-Layer: layer1.1.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 2.3286135686362286e-08
+R Max: 5.790355135104619e-05
+R Mean: 4.678235654864693e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.1.bn1.bias
+LRP-Layer: layer1.1.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 2.3286135686362286e-08
+R Max: 5.790355135104619e-05
+R Mean: 4.678235654864693e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.1.conv2.weight
+LRP-Layer: layer1.1.conv2_out
+Layertype: conv
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 0.0
+R Max: 0.00020240953017491847
+R Mean: 4.678236109612044e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.1.bn2.weight
+LRP-Layer: layer1.1.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 0.0
+R Max: 0.00020240953017491847
+R Mean: 4.678236109612044e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer1.1.bn2.bias
+LRP-Layer: layer1.1.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 64, 56, 56])
+R Min: 0.0
+R Max: 0.00020240953017491847
+R Mean: 4.678236109612044e-06
+reduced shape (after mean): torch.Size([64])
+broadcasted shape: torch.Size([64])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.0.conv1.weight
+LRP-Layer: layer2.0.conv1_out
+Layertype: conv
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 2.3071922328199435e-07
+R Max: 8.138579141814262e-05
+R Mean: 9.155255611403845e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.0.bn1.weight
+LRP-Layer: layer2.0.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 2.3071922328199435e-07
+R Max: 8.138579141814262e-05
+R Mean: 9.155255611403845e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.0.bn1.bias
+LRP-Layer: layer2.0.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 2.3071922328199435e-07
+R Max: 8.138579141814262e-05
+R Mean: 9.155255611403845e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.0.conv2.weight
+LRP-Layer: layer2.0.conv2_out
+Layertype: conv
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 0.0
+R Max: 0.00036444084253162146
+R Mean: 9.155255611403845e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.0.bn2.weight
+LRP-Layer: layer2.0.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 0.0
+R Max: 0.00036444084253162146
+R Mean: 9.155255611403845e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.0.bn2.bias
+LRP-Layer: layer2.0.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 0.0
+R Max: 0.00036444084253162146
+R Mean: 9.155255611403845e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.0.downsample.0.weight
+LRP-Layer: layer2.0.shortcut_out
+Layertype: conv
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 0.0
+R Max: 9.936818059941288e-06
+R Mean: 2.0123249555581424e-07
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.0.downsample.1.weight
+LRP-Layer: layer2.0.shortcut_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 0.0
+R Max: 9.936818059941288e-06
+R Mean: 2.0123249555581424e-07
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.0.downsample.1.bias
+LRP-Layer: layer2.0.shortcut_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 0.0
+R Max: 9.936818059941288e-06
+R Mean: 2.0123249555581424e-07
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.1.conv1.weight
+LRP-Layer: layer2.1.conv1_out
+Layertype: conv
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 6.94667789957748e-08
+R Max: 0.00010626950825098902
+R Mean: 9.356500413559843e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.1.bn1.weight
+LRP-Layer: layer2.1.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 6.94667789957748e-08
+R Max: 0.00010626950825098902
+R Mean: 9.356500413559843e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.1.bn1.bias
+LRP-Layer: layer2.1.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 6.94667789957748e-08
+R Max: 0.00010626950825098902
+R Mean: 9.356500413559843e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.1.conv2.weight
+LRP-Layer: layer2.1.conv2_out
+Layertype: conv
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 0.0
+R Max: 0.0004229158512316644
+R Mean: 9.356501323054545e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.1.bn2.weight
+LRP-Layer: layer2.1.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 0.0
+R Max: 0.0004229158512316644
+R Mean: 9.356501323054545e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer2.1.bn2.bias
+LRP-Layer: layer2.1.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 128, 28, 28])
+R Min: 0.0
+R Max: 0.0004229158512316644
+R Mean: 9.356501323054545e-06
+reduced shape (after mean): torch.Size([128])
+broadcasted shape: torch.Size([128])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.0.conv1.weight
+LRP-Layer: layer3.0.conv1_out
+Layertype: conv
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 9.088335559681582e-07
+R Max: 0.00014297878078650683
+R Mean: 1.842964229581412e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.0.bn1.weight
+LRP-Layer: layer3.0.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 9.088335559681582e-07
+R Max: 0.00014297878078650683
+R Mean: 1.842964229581412e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.0.bn1.bias
+LRP-Layer: layer3.0.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 9.088335559681582e-07
+R Max: 0.00014297878078650683
+R Mean: 1.842964229581412e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.0.conv2.weight
+LRP-Layer: layer3.0.conv2_out
+Layertype: conv
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 0.0
+R Max: 0.0005313899600878358
+R Mean: 1.842964229581412e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.0.bn2.weight
+LRP-Layer: layer3.0.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 0.0
+R Max: 0.0005313899600878358
+R Mean: 1.842964229581412e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.0.bn2.bias
+LRP-Layer: layer3.0.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 0.0
+R Max: 0.0005313899600878358
+R Mean: 1.842964229581412e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.0.downsample.0.weight
+LRP-Layer: layer3.0.shortcut_out
+Layertype: conv
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 0.0
+R Max: 1.2919377695652656e-05
+R Mean: 2.833841108440538e-07
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.0.downsample.1.weight
+LRP-Layer: layer3.0.shortcut_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 0.0
+R Max: 1.2919377695652656e-05
+R Mean: 2.833841108440538e-07
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.0.downsample.1.bias
+LRP-Layer: layer3.0.shortcut_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 0.0
+R Max: 1.2919377695652656e-05
+R Mean: 2.833841108440538e-07
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.1.conv1.weight
+LRP-Layer: layer3.1.conv1_out
+Layertype: conv
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 4.3512363845366053e-07
+R Max: 0.00013406880316324532
+R Mean: 1.8713042663875967e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.1.bn1.weight
+LRP-Layer: layer3.1.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 4.3512363845366053e-07
+R Max: 0.00013406880316324532
+R Mean: 1.8713042663875967e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.1.bn1.bias
+LRP-Layer: layer3.1.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 4.3512363845366053e-07
+R Max: 0.00013406880316324532
+R Mean: 1.8713042663875967e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.1.conv2.weight
+LRP-Layer: layer3.1.conv2_out
+Layertype: conv
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 0.0
+R Max: 0.0007109361467882991
+R Mean: 1.8713042663875967e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.1.bn2.weight
+LRP-Layer: layer3.1.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 0.0
+R Max: 0.0007109361467882991
+R Mean: 1.8713042663875967e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer3.1.bn2.bias
+LRP-Layer: layer3.1.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 256, 14, 14])
+R Min: 0.0
+R Max: 0.0007109361467882991
+R Mean: 1.8713042663875967e-05
+reduced shape (after mean): torch.Size([256])
+broadcasted shape: torch.Size([256])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.0.conv1.weight
+LRP-Layer: layer4.0.conv1_out
+Layertype: conv
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 2.0619841052393895e-06
+R Max: 0.00020696419232990593
+R Mean: 3.702197136590257e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.0.bn1.weight
+LRP-Layer: layer4.0.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 2.0619841052393895e-06
+R Max: 0.00020696419232990593
+R Mean: 3.702197136590257e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.0.bn1.bias
+LRP-Layer: layer4.0.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 2.0619841052393895e-06
+R Max: 0.00020696419232990593
+R Mean: 3.702197136590257e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.0.conv2.weight
+LRP-Layer: layer4.0.conv2_out
+Layertype: conv
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 0.0
+R Max: 0.0010952292941510677
+R Mean: 3.702197136590257e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.0.bn2.weight
+LRP-Layer: layer4.0.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 0.0
+R Max: 0.0010952292941510677
+R Mean: 3.702197136590257e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.0.bn2.bias
+LRP-Layer: layer4.0.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 0.0
+R Max: 0.0010952292941510677
+R Mean: 3.702197136590257e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.0.downsample.0.weight
+LRP-Layer: layer4.0.shortcut_out
+Layertype: conv
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 0.0
+R Max: 1.711874756438192e-05
+R Mean: 4.041430656798184e-07
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.0.downsample.1.weight
+LRP-Layer: layer4.0.shortcut_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 0.0
+R Max: 1.711874756438192e-05
+R Mean: 4.041430656798184e-07
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.0.downsample.1.bias
+LRP-Layer: layer4.0.shortcut_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 0.0
+R Max: 1.711874756438192e-05
+R Mean: 4.041430656798184e-07
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.1.conv1.weight
+LRP-Layer: layer4.1.conv1_out
+Layertype: conv
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 2.4069740902632475e-06
+R Max: 0.00016520256758667529
+R Mean: 3.742613262147643e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.1.bn1.weight
+LRP-Layer: layer4.1.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 2.4069740902632475e-06
+R Max: 0.00016520256758667529
+R Mean: 3.742613262147643e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.1.bn1.bias
+LRP-Layer: layer4.1.bn1_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 2.4069740902632475e-06
+R Max: 0.00016520256758667529
+R Mean: 3.742613262147643e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.1.conv2.weight
+LRP-Layer: layer4.1.conv2_out
+Layertype: conv
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 0.0
+R Max: 0.0021280681248754263
+R Mean: 3.742613262147643e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512, 1, 1, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.1.bn2.weight
+LRP-Layer: layer4.1.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 0.0
+R Max: 0.0021280681248754263
+R Mean: 3.742613262147643e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.layer4.1.bn2.bias
+LRP-Layer: layer4.1.bn2_out
+Layertype: bn
+R shape: torch.Size([8, 512, 7, 7])
+R Min: 0.0
+R Max: 0.0021280681248754263
+R Mean: 3.742613262147643e-05
+reduced shape (after mean): torch.Size([512])
+broadcasted shape: torch.Size([512])
+--------------------------------------------------------------------------------
+Param-Layer: model.fc.weight
+LRP-Layer: RelevancePropagationLinear.out.0
+Layertype: linear_w
+R shape: torch.Size([8, 7])
+R Min: 0.0
+R Max: 0.9990335702896118
+R Mean: 0.13413648307323456
+reduced shape (after mean): torch.Size([7])
+broadcasted shape: torch.Size([7, 1])
+--------------------------------------------------------------------------------
+Param-Layer: model.fc.bias
+LRP-Layer: RelevancePropagationLinear.out.0
+Layertype: linear_b
+R shape: torch.Size([8, 7])
+R Min: 0.0
+R Max: 0.9990335702896118
+R Mean: 0.13413648307323456
+reduced shape (after mean): torch.Size([7])
+broadcasted shape: torch.Size([7])
+--------------------------------------------------------------------------------
