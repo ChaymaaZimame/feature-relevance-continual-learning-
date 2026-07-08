@@ -1,0 +1,31 @@
+DATA:
+  CLASS_INDICES: [0, 1, 2, 3, 4, 5, 6]
+
+
+TRAIN:
+  EPOCHS: 50
+  BATCH_SIZE: 64
+  
+
+OPTIMIZER:
+  LR: 0.1
+  WEIGHT_DECAY: 0.0
+  MOMENTUM: 0.0
+
+
+SCHEDULER:
+  USE: true #cosine annealing scheduler
+  MIN_LR: 1.0e-6
+
+EARLY_STOPPING:
+  USE: true
+  PATIENCE: 8
+  THRESHOLD: 0.0005
+  MODE: "min"
+  BEST_OUTPUT_NAME: "best_model_baseline"
+
+
+OUTPUT:
+  NAME: "baseline_training"
+  LOSS_PLOT_NAME: "loss_curve_baseline"
+  CONFUSION_MATRIX_NAME: "confusion_matrix_baseline"
