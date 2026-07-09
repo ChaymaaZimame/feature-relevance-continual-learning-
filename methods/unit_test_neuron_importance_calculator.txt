@@ -19,7 +19,7 @@ expected EMA: tensor([2.0846, 1.1976, 0.5098], grad_fn=<AddBackward0>)
 result: tensor([2.0846, 1.1976, 0.5098])
 
 --- Vergleich ---
-Test bestanden!
+Linear EMA-Test bestanden!
 
 --- Broadcasting Linear weight ---
 linear_w: tensor([[2.0846],
@@ -60,3 +60,47 @@ Conv_w-Shape korrekt!
 
 --- Broadcasting BN ---
 BN-Shape korrekt!
+
+########## Test für get_param_Sclaes und print-Methoden
+
+--- print_importance() testen ---
+Anzahl Importance-Layer: 2
+================================================================================
+conv1
+Shape: torch.Size([4])
+Min: 1.0
+Max: 4.0
+Mean: 2.5
+--------------------------------------------------------------------------------
+fc
+Shape: torch.Size([3])
+Min: 0.5
+Max: 2.5
+Mean: 1.5
+--------------------------------------------------------------------------------
+
+--- get_param_scales() testen ---
+get_param_scales() Shapes korrekt!
+
+--- print_param_scales() testen ---
+Anzahl Parameter-Layer: 3
+================================================================================
+Param-Layer: model.conv1.weight
+Scale shape: torch.Size([4, 1, 1, 1])
+Scale min: 1.0
+Scale max: 4.0
+Scale mean: 2.5
+--------------------------------------------------------------------------------
+Param-Layer: model.fc.weight
+Scale shape: torch.Size([3, 1])
+Scale min: 0.5
+Scale max: 2.5
+Scale mean: 1.5
+--------------------------------------------------------------------------------
+Param-Layer: model.fc.bias
+Scale shape: torch.Size([3])
+Scale min: 0.5
+Scale max: 2.5
+Scale mean: 1.5
+--------------------------------------------------------------------------------
+print_importance() und print_param_scales() liefen ohne Fehler.

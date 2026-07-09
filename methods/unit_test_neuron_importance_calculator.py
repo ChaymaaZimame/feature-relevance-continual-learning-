@@ -49,40 +49,30 @@ def test_neuron_importance_calculator_linear():
     raw_imp = product.abs().mean(dim=0)
     print("raw importance:", raw_imp)
 
-   
     #########
     print("\n--- Normalisierung testen ---")
     # Shape bleibt gleich (C,) also (3,)
 
     norm = raw_imp / raw_imp.mean()
     print("normalized:", norm)
-
     #########
     print("\n--- EMA testen ---")
     # Shape bleibt gleich (C,) also (3,)
-
     expected = delta * old_importance + (1 - delta) * norm
     print("expected EMA:", expected)
 
     #########
     # NeuronImportanceCalculator Klasse laufen lassen
     print("\n--- NeuronImportanceCalculator Klasse ---")
-
     imp_calculator.update_importance()
     result = imp_calculator.neuron_importance["test_layer"]
-
     print("result:", result)
 
     #########
     # Vergleich
     print("\n--- Vergleich ---")
-
-    if torch.allclose(result, expected, atol=1e-6):
-        print("Test bestanden!")
-    else:
-        print("Test fehlgeschlagen!")
-        print("Erwartet:", expected)
-        print("Bekommen:", result)
+    assert torch.allclose(result, expected, atol=1e-6), "Linear EMA-Test fehlgeschlagen"
+    print("Linear EMA-Test bestanden!")
         
     #########
     # Broadcasting testen
@@ -90,8 +80,7 @@ def test_neuron_importance_calculator_linear():
     # param_grad hat Shape (C_out, C_in)
     # importance hat Shape (C_out,)
     # mit view(-1,1) wird importance automatisch auf (C_out, C_in) gebroadcastet
-    
-    scale_w = imp_calculator.scale_importance_for_grad(importance=result, layertype="linear_w")
+    scale_w = imp_calculator.scale_for_grad(importance=result, layertype="linear_w")
     # enthalten alle noch 1 weil
     # ich noch nicht die echte param.grad.shape einsetze
     # sondern nur einen vorbereitenden Skalierungstensor baue
@@ -104,14 +93,9 @@ def test_neuron_importance_calculator_linear():
     # param_grad hat Shape (C_out,)
     # importance hat Shape (C_out,)
     # keine Änderung in NeuronImportanceCalculator Klasse
-
-    scale_b = imp_calculator.scale_importance_for_grad(importance=result, layertype="linear_b")
+    scale_b = imp_calculator.scale_for_grad(importance=result, layertype="linear_b")
     assert scale_b.shape == (3,)
     print("Linear_b-Shape korrekt!")
-    
-        
-    
-
 
 
 import torch
@@ -212,7 +196,7 @@ def test_neuron_importance_calculator_conv():
     # importance hat Shape (C_out,)
     # mit view(-1,1,1,1) wird importance automatisch auf (C_out, C_in, Kernel-Höhe, Kernel-Breite) gebroadcastet
 
-    scale_w = imp_calculator.scale_importance_for_grad(importance=result, layertype="conv")
+    scale_w = imp_calculator.scale_for_grad(importance=result, layertype="conv")
     # enthalten noch 1,1,1 weil
     # ich noch nicht die echte param.grad.shape einsetze
     # sondern nur einen vorbereitenden Skalierungstensor baue
@@ -223,9 +207,39 @@ def test_neuron_importance_calculator_conv():
     # param_grad hat Shape (C_out,)
     # importance hat Shape (C_out,)
     # keine Änderung in NeuronImportanceCalculator Klasse
-    scale_bn = imp_calculator.scale_importance_for_grad(importance=result, layertype="bn")
+    scale_bn = imp_calculator.scale_for_grad(importance=result, layertype="bn")
     assert scale_bn.shape == (2,)
     print("BN-Shape korrekt!")
+    
+
+
+def test_get_param_scales_and_prints():
+    imp_calculator =  NeuronImportanceCalculator(delta=0.99)
+    
+    imp_calculator.neuron_importance["conv1"] = torch.tensor([1.0, 2.0, 3.0, 4.0], dtype=torch.float32)
+    imp_calculator.neuron_importance["fc"] = torch.tensor([0.5, 1.5, 2.5], dtype=torch.float32)
+
+    print("\n--- print_importance() testen ---")
+    imp_calculator.print_importance()
+    
+    print("\n--- get_param_scales() testen ---")
+    scale_dict = imp_calculator.get_param_scales()
+    
+    assert "model.conv1.weight" in scale_dict, "model.conv1.weight fehlt in scale_dict"
+    assert "model.fc.weight" in scale_dict, "model.fc.weight fehlt in scale_dict"
+    assert "model.fc.bias" in scale_dict, "model.fc.bias fehlt in scale_dict"
+
+    assert scale_dict["model.conv1.weight"].shape == (4, 1, 1, 1)
+    assert scale_dict["model.fc.weight"].shape == (3, 1)
+    assert scale_dict["model.fc.bias"].shape == (3,)
+
+    print("get_param_scales() Shapes korrekt!")
+
+    print("\n--- print_param_scales() testen ---")
+    imp_calculator.print_param_scales()
+
+    print("print_importance() und print_param_scales() liefen ohne Fehler.")
+    
 
 
 if __name__ == "__main__":
@@ -233,3 +247,5 @@ if __name__ == "__main__":
     test_neuron_importance_calculator_linear()
     print("\n########## Test für Conv ##########")
     test_neuron_importance_calculator_conv()
+    print("\n########## Test für get_param_Sclaes und print-Methoden")
+    test_get_param_scales_and_prints()

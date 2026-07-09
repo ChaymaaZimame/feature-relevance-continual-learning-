@@ -18,7 +18,6 @@ class LRPScaler:
         self.writer = writer
         self.global_step = 0
         
-
         self.handles = []
         self.factor_dict = {}
 
@@ -27,6 +26,10 @@ class LRPScaler:
         print("\n=== FACTOR STATS ===")
 
         for pname, scale in scale_dict.items():
+            # only consider parameters that belong to the fc layer
+            if not "fc" in pname:
+                continue
+            
             factor = relevance_to_factor(scale, self.beta, self.eps)
             self.factor_dict[pname] = factor
             
@@ -40,7 +43,7 @@ class LRPScaler:
                 f"scale_min={scale.min().item():.6f} | "
                 f"scale_max={scale.max().item():.6f} | "
                 f"factor_nonzero={nonzero}/{total}"
-            )
+            )        
             
             print("FACTOR VALUES:")
             print(factor.flatten()[:20])  # print first 20 values of factor for debugging
@@ -61,13 +64,13 @@ class LRPScaler:
             grad_before = grad.abs().mean().item()
             scaled_grad = grad * factor
             grad_after = scaled_grad.abs().mean().item()
-            
+
             if self.writer is not None and param_name == "model.fc.weight":
                 self.writer.add_scalar(f"Gradients/{param_name}_before", grad_before, self.global_step)
                 self.writer.add_scalar(f"Gradients/{param_name}_after", grad_after, self.global_step)
 
             self.global_step += 1
-
+            
             print(
                 f"[DEBUG] HOOK {param_name} | "
                 f"grad_before={grad.abs().mean().item():.8f} | "
@@ -84,8 +87,13 @@ class LRPScaler:
         self.remove()
 
         for pname, p in model.named_parameters():
-            if not p.requires_grad:
+            if not "fc" in pname:
+                print(f"SKIP: {pname}")
                 continue
-
+            if not p.requires_grad:
+                print(f"SKIP (no grad): {pname}")
+                continue
+            
             handle = p.register_hook(self.param_hook(pname))
+            print(f"HOOK: {pname}")
             self.handles.append(handle)

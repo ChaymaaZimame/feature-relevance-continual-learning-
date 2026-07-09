@@ -1,0 +1,6 @@
+reduce_conv bestanden!
+reduce_linear bestanden!
+normalize bestanden!
+scale_bn bestanden!
+scale_linear_w bestanden!
+scale_conv bestanden!

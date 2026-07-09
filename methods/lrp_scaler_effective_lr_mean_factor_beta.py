@@ -1,18 +1,12 @@
 import torch
 
-def relevance_to_factor(scale: torch.Tensor, beta: float, eps: float = 1e-6):
-    factor = torch.zeros_like(scale)
 
-    for s, f in zip(scale, factor):
-        if s >= beta:
-            new_value = 1.0 / (s + eps)
-            f.copy_(new_value)  
-
-    return factor
+def relevance_to_factor(scale: torch.Tensor, global_factor_value):
+    return torch.full_like(scale, global_factor_value)
 
 
 class LRPScaler:
-    def __init__(self, beta=None, eps=1e-6, writer=None):
+    def __init__(self, beta=1.0, eps=1e-6, writer=None):
         self.beta = beta
         self.eps = eps
         self.writer = writer
@@ -25,21 +19,35 @@ class LRPScaler:
     def update_scales(self, scale_dict):
         self.factor_dict = {}
         print("\n=== FACTOR STATS ===")
+        
+        # all selected factors from all layers will be collected to compute a global mean   
+        selected_factors = []
+        
+        for param_name, scale in scale_dict.items():
+            mask = scale >= self.beta
+            if mask.any():
+                factor_values = 1.0 / (scale[mask].detach() + self.eps)
+                selected_factors.append(factor_values.flatten())
+            
+        selected_factors = torch.cat(selected_factors)
+        
+        # compute the global mean of the selected factors
+        global_factor_value = selected_factors.mean()
+        
+        print(f"GLOBAL mean(1/relevance): {global_factor_value.item():.6f}")
+        print(f"Number of selected neurons: {selected_factors.numel()}")        
+        
 
-        for pname, scale in scale_dict.items():
-            factor = relevance_to_factor(scale, self.beta, self.eps)
-            self.factor_dict[pname] = factor
-            
-            nonzero = (factor != 0).sum().item()
-            total = factor.numel()
-            
+        for param_name, scale in scale_dict.items():
+            factor = relevance_to_factor(scale,global_factor_value)
+            self.factor_dict[param_name] = factor
+          
             print(
-                f"{pname}: "
+                f"{param_name}: "
                 f"scale_shape={tuple(scale.shape)} | "
                 f"factor_shape={tuple(factor.shape)} | "
                 f"scale_min={scale.min().item():.6f} | "
                 f"scale_max={scale.max().item():.6f} | "
-                f"factor_nonzero={nonzero}/{total}"
             )
             
             print("FACTOR VALUES:")
@@ -67,7 +75,7 @@ class LRPScaler:
                 self.writer.add_scalar(f"Gradients/{param_name}_after", grad_after, self.global_step)
 
             self.global_step += 1
-
+            
             print(
                 f"[DEBUG] HOOK {param_name} | "
                 f"grad_before={grad.abs().mean().item():.8f} | "
@@ -83,9 +91,9 @@ class LRPScaler:
     def register_all_params(self, model):
         self.remove()
 
-        for pname, p in model.named_parameters():
+        for param_name, p in model.named_parameters():
             if not p.requires_grad:
                 continue
 
-            handle = p.register_hook(self.param_hook(pname))
+            handle = p.register_hook(self.param_hook(param_name))
             self.handles.append(handle)
