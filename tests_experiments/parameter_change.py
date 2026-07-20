@@ -1,4 +1,4 @@
-# erstellt mithilfe von ChatGPT
+""" THIS SCRIPT WAS IMPLEMENTED WITH AI ASSISTANCE """
 import torch
 
 
