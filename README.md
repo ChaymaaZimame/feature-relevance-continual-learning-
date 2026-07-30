@@ -1,4 +1,4 @@
-# Master's Thesis - Chaymaa Zimame
+# Master's Thesis: Using Feature Relevance to Control Neural Plasticity for Knowledge Preservation in Continual Learning - Chaymaa Zimame
 
 This repository contains the data, models, configurations, methods, a cloned and partly modified LRP implementation, baseline training scripts, experiments and evaluation scripts developed as part of my master's thesis.
 
