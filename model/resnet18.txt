@@ -1,0 +1,11 @@
+Linear(in_features=512, out_features=7, bias=True)
+Linear(in_features=512, out_features=10, bias=True)
+new bias all zero: tensor([0., 0., 0.])
+out_before: tensor([[ 1.7019,  0.2801,  1.8018,  0.5887,  1.5378, -0.6446, -1.8320],
+        [ 1.6718,  0.2885,  1.7829,  0.5005,  1.5342, -0.6264, -1.9048]],
+       device='cuda:0')
+out_after: tensor([[ 1.7019,  0.2801,  1.8018,  0.5887,  1.5378, -0.6446, -1.8320,  1.0791,
+          1.3099,  3.8148],
+        [ 1.6718,  0.2885,  1.7829,  0.5005,  1.5342, -0.6264, -1.9048,  1.1999,
+          1.2685,  3.8334]], device='cuda:0')
+old and new output equal: True
