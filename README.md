@@ -1,11 +1,40 @@
-# Masterarbeit von Chaymaa Zimame
+# Master's Thesis - Chaymaa Zimame
 
-## Projektstruktur
+This repository contains the data, models, configurations, methods, a cloned and partly modified LRP implementation, baseline training scripts, experiments and evaluation scripts developed as part of my master's thesis.
 
-## Setup
+- **data/** – Dataset preparation and preprocessing
+- **model/** – Model implementations
+- **lrp_repo/** – Modified implementation of Layer-wise Relevance Propagation (LRP)
+- **methods/** – Relevance and importance computation methods
+- **tests_before_experiments/** – Preliminary tests conducted before the main experiments
+- **experiments/** – Training scripts and experiment pipeline
+- **configs/** – Configuration files
+- **results/** – Baseline training results
+- **results_experiments/** – Results of the conducted experiments
+- **tests_experiments/** – Post-experiment evaluation and analysis
+
+Clone the repository:
+
 ```bash
-# Umgebung aktivieren
-source .venv/bin/activate
+git clone <repository-url>
+cd ma-chaymaa-zimame
+```
+Create and activate a virtual environment:
 
-# Dependencies installieren
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+Install the dependencies:
+
+```bash
 pip install -r requirements.txt
+```
+
+---
+
+
+## Acknowledgements
+
+This project contains a partly modified version of the original LRP repository located in `lrp_repo`. The original implementation is available at: [[ECCV24] Layer-Wise Relevance Propagation with Conservation Property for ResNet](https://github.com/keio-smilab24/LRP-for-ResNet)
