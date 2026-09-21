@@ -35,6 +35,8 @@ pip install -r requirements.txt
 ---
 
 
-## Acknowledgements
+## Acknowledgements: Third-Party Code
+This project incorporates a modified version of the Layer-Wise Relevance Propagation (LRP) implementation from [[ECCV24] Layer-Wise Relevance Propagation with Conservation Property for ResNet](https://github.com/keio-smilab24/LRP-for-ResNet).
 
-This project contains a partly modified version of the original LRP repository located in `lrp_repo`. The original implementation is available at: [[ECCV24] Layer-Wise Relevance Propagation with Conservation Property for ResNet](https://github.com/keio-smilab24/LRP-for-ResNet)
+The original implementation is available in the referenced repository.
+The code in `lrp_repo/` has been adapted for use in this project.
